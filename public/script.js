@@ -6,8 +6,9 @@ const btnRoll = document.querySelector('.btn--roll');
 // const btnHold = document.querySelector('.btn--hold');
 
 // STATE
-let player0scoreEl = document.getElementById('score--0');
-let player1scoreEl = document.getElementById('score--1');
+
+let currentScore0 = 0;
+// let currentScore1 = 0;
 
 // FUNCTIONS
 
@@ -20,11 +21,26 @@ function rollDice () {
   diceEl.src = `dice-${rollResult}.png`;
 
   // Check for rolled 1: If true, switch to next player
+  if (rollResult !== 1) {
+    // add dice roll to current score
+    currentScore0 += rollResult;
+    setTextContent('#current--0', currentScore0);
+    // display new score
+  } else {
+
+    // reset current score
+
+    // switch player
+  }
+}
+
+function setTextContent(targetElement, newContent) {
+  document.querySelector(`${targetElement}`).textContent = newContent;
 }
 
 function startGame () {
-  player0scoreEl.textContent = 0;
-  player1scoreEl.textContent = 0;
+  setTextContent('#score--0', 0);
+  setTextContent('#score--1', 0);
   diceEl.classList.add('hidden');
 }
 
