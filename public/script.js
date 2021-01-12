@@ -24,7 +24,7 @@ function rollDice () {
   if (rollResult !== 1) {
     // add dice roll to current score
     currentScore0 += rollResult;
-    setTextContent('#current--0', currentScore0);
+    setTextContent('current--0', currentScore0);
     // display new score
   } else {
 
@@ -35,12 +35,16 @@ function rollDice () {
 }
 
 function setTextContent(targetElement, newContent) {
-  document.querySelector(`${targetElement}`).textContent = newContent;
+  if (targetElement.includes('.')) {
+    document.querySelector(`${targetElement}`).textContent = newContent;
+  } else {
+    document.getElementById(`${targetElement}`).textContent = newContent;
+  }
 }
 
 function startGame () {
-  setTextContent('#score--0', 0);
-  setTextContent('#score--1', 0);
+  setTextContent('score--0', 0);
+  setTextContent('score--1', 0);
   diceEl.classList.add('hidden');
 }
 
